@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>l'Artesana · Restaurant · Rubí</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf7f2;
+    --charcoal: #1c1a17;
+    --dark-brown: #2d2418;
+    --olive: #6b6b3a;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --terracotta: #b5613a;
+    --sage: #8a9a7b;
+    --text-muted: #7a7060;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(28,26,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    transition: padding 0.4s;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--cream); font-style: normal; font-weight: 400; font-size: 0.85rem; display: block; letter-spacing: 0.25em; text-transform: uppercase; margin-top: -4px; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream); text-decoration: none; font-size: 0.78rem;
+    letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400;
+    opacity: 0.8; transition: opacity 0.3s, color 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-reserve {
+    background: var(--gold); color: var(--dark-brown);
+    padding: 0.6rem 1.6rem; font-size: 0.72rem;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    border: none; cursor: pointer; transition: background 0.3s;
+    text-decoration: none;
+  }
+  .nav-reserve:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg, rgba(28,26,23,0.78) 0%, rgba(45,36,24,0.55) 50%, rgba(28,26,23,0.85) 100%),
+      url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: heroZoom 14s ease-out forwards;
+  }
+  @keyframes heroZoom { to { transform: scale(1); } }
+
+  .hero-content {
+    position: relative; text-align: center; color: var(--cream);
+    animation: fadeUp 1.2s 0.3s both;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-tag {
+    font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.4rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .hero-tag::before, .hero-tag::after { content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.6; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-style: italic; font-weight: 400;
+    line-height: 1.05;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 em { color: var(--gold); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-style: italic; color: rgba(245,240,232,0.75);
+    margin-bottom: 2.8rem; letter-spacing: 0.04em;
+  }
+  .hero-ctas { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--dark-brown);
+    padding: 1rem 2.5rem; font-size: 0.78rem;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    text-decoration: none; transition: all 0.3s;
+    border: 2px solid var(--gold);
+  }
+  .btn-primary:hover { background: transparent; color: var(--gold); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    padding: 1rem 2.5rem; font-size: 0.78rem;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400;
+    text-decoration: none; border: 1px solid rgba(245,240,232,0.4);
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(245,240,232,0.5); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* ── BADGES ── */
+  .badges {
+    background: var(--charcoal);
+    display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+  }
+  .badge {
+    padding: 1.6rem 3rem; text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    flex: 1; min-width: 180px;
+  }
+  .badge:last-child { border-right: none; }
+  .badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--gold); display: block;
+  }
+  .badge-label {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,232,0.5); margin-top: 0.3rem;
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 7rem 2rem; }
+  .section-tag {
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-tag::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400; line-height: 1.15;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--warm-white); }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img-main {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    display: block;
+    box-shadow: 12px 12px 0 var(--cream), 14px 14px 0 var(--gold);
+  }
+  .about-img-accent {
+    position: absolute; bottom: -2rem; right: -2rem;
+    width: 55%; aspect-ratio: 1; object-fit: cover;
+    border: 6px solid var(--warm-white);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+  .about-text .section-tag { margin-bottom: 0.8rem; }
+  .about-text h2 { margin-bottom: 1.6rem; }
+  .about-lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-style: italic;
+    color: var(--text-muted); line-height: 1.7; margin-bottom: 1.4rem;
+  }
+  .about-body { font-size: 0.9rem; line-height: 1.85; color: #4a4535; margin-bottom: 2rem; }
+  .about-attrs { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+  .attr { text-align: center; }
+  .attr-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
+  .attr-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* ── MENU ── */
+  .menu-section { background: var(--charcoal); color: var(--cream); }
+  .menu-inner { max-width: 1100px; margin: 0 auto; }
+  .menu-section .section-tag { color: var(--gold); }
+  .menu-section h2 { color: var(--cream); margin-bottom: 0.6rem; }
+  .menu-intro { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(245,240,232,0.6); margin-bottom: 4rem; }
+  .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 3rem; }
+  .menu-card {
+    background: rgba(255,255,255,0.04);
+    padding: 2.2rem 1.8rem;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: all 0.4s; position: relative; overflow: hidden;
+  }
+  .menu-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    height: 2px; width: 0; background: var(--gold);
+    transition: width 0.4s;
+  }
+  .menu-card:hover::before { width: 100%; }
+  .menu-card:hover { background: rgba(201,168,76,0.06); transform: translateY(-2px); }
+  .menu-card-emoji { font-size: 1.6rem; margin-bottom: 1rem; }
+  .menu-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 400; margin-bottom: 0.6rem; color: var(--cream);
+  }
+  .menu-card p { font-size: 0.82rem; line-height: 1.7; color: rgba(245,240,232,0.5); }
+  .menu-note {
+    text-align: center; font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 1rem; color: rgba(245,240,232,0.4);
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+  }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--cream); padding: 7rem 2rem; }
+  .gallery-inner { max-width: 1300px; margin: 0 auto; }
+  .gallery-header { text-align: center; margin-bottom: 4rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+  .gitem { overflow: hidden; position: relative; }
+  .gitem img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  .gitem:hover img { transform: scale(1.06); }
+  .g1 { grid-column: 1/6; grid-row: 1/2; aspect-ratio: 4/3; }
+  .g2 { grid-column: 6/9; grid-row: 1/2; aspect-ratio: 3/4; }
+  .g3 { grid-column: 9/13; grid-row: 1/2; aspect-ratio: 4/3; }
+  .g4 { grid-column: 1/5; grid-row: 2/3; aspect-ratio: 4/3; }
+  .g5 { grid-column: 5/9; grid-row: 2/3; aspect-ratio: 1; }
+  .g6 { grid-column: 9/13; grid-row: 2/3; aspect-ratio: 4/3; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--warm-white); }
+  .test-inner { max-width: 1000px; margin: 0 auto; }
+  .test-header { text-align: center; margin-bottom: 4rem; }
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .test-card {
+    background: white; padding: 2rem;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
+  }
+  .test-card:hover { transform: translateY(-4px); }
+  .stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; }
+  .test-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.75; color: #4a4535; margin-bottom: 1.2rem; }
+  .test-author { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* ── INFO ── */
+  .info { background: var(--dark-brown); color: var(--cream); }
+  .info-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem;
+  }
+  .info-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 400;
+    color: var(--gold); margin-bottom: 1.4rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+  .info-line { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.8rem; }
+  .info-line .icon { font-size: 1rem; margin-top: 0.1rem; opacity: 0.7; }
+  .info-line p { font-size: 0.85rem; line-height: 1.6; color: rgba(245,240,232,0.7); }
+  .info-line strong { color: var(--cream); font-weight: 400; }
+  .schedule-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+  .schedule-day { font-size: 0.82rem; color: rgba(245,240,232,0.6); }
+  .schedule-hours { font-size: 0.82rem; color: var(--cream); }
+  .closed { color: var(--terracotta) !important; }
+
+  /* ── MAP ── */
+  .map-section { height: 420px; position: relative; overflow: hidden; }
+  .map-section iframe { width: 100%; height: 100%; border: none; filter: grayscale(30%) sepia(10%); }
+  .map-overlay {
+    position: absolute; top: 50%; left: 4rem; transform: translateY(-50%);
+    background: var(--charcoal); color: var(--cream);
+    padding: 2rem 2.5rem; min-width: 280px;
+    border-left: 3px solid var(--gold);
+  }
+  .map-overlay h4 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .map-overlay p { font-size: 0.82rem; line-height: 1.7; color: rgba(245,240,232,0.7); }
+  .map-overlay a { display: inline-block; margin-top: 1rem; color: var(--gold); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; }
+  .map-overlay a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0e0d0b; color: rgba(245,240,232,0.4);
+    text-align: center; padding: 2.5rem 2rem;
+    font-size: 0.75rem; letter-spacing: 0.1em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-style: italic;
+    color: var(--gold); margin-bottom: 0.6rem;
+  }
+  .footer-social { display: flex; justify-content: center; gap: 1.5rem; margin: 1rem 0; }
+  .social-link {
+    width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); text-decoration: none; font-size: 0.8rem;
+    transition: all 0.3s;
+  }
+  .social-link:hover { background: var(--gold); color: var(--dark-brown); }
+
+  /* ── RESERVE CTA ── */
+  .reserve-cta {
+    background: linear-gradient(135deg, var(--terracotta) 0%, #8b3a20 100%);
+    text-align: center; padding: 6rem 2rem;
+    position: relative; overflow: hidden;
+  }
+  .reserve-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1400&q=60') center/cover;
+    opacity: 0.15;
+  }
+  .reserve-cta-inner { position: relative; }
+  .reserve-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--cream); margin-bottom: 1rem;
+  }
+  .reserve-cta p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; color: rgba(245,240,232,0.8); margin-bottom: 2.5rem; }
+
+  /* ── MODAL RESERVA ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(14,13,11,0.75); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-overlay.active { display: flex; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: var(--warm-white); max-width: 520px; width: 100%;
+    padding: 3rem; position: relative;
+    animation: slideUp 0.3s ease;
+    border-top: 4px solid var(--gold);
+  }
+  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .modal-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; font-size: 1.5rem; cursor: pointer;
+    color: var(--text-muted); line-height: 1; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--charcoal); }
+
+  .modal h3 {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.8rem; color: var(--charcoal); margin-bottom: 0.4rem;
+  }
+  .modal-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block; font-size: 0.68rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 1px solid #ddd; background: white;
+    font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--charcoal);
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none; border-radius: 0;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .btn-submit {
+    width: 100%; background: var(--gold); color: var(--dark-brown);
+    border: none; padding: 1rem; font-family: 'Jost', sans-serif;
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 500; cursor: pointer; transition: background 0.3s;
+    margin-top: 0.5rem;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+  .modal-alt {
+    text-align: center; margin-top: 1.2rem; font-size: 0.78rem; color: var(--text-muted);
+  }
+  .modal-alt a { color: var(--gold); text-decoration: none; font-weight: 500; }
+
+  .modal-success {
+    display: none; text-align: center; padding: 1rem 0;
+  }
+  .modal-success .check { font-size: 3rem; margin-bottom: 1rem; }
+  .modal-success h4 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.6rem; }
+  .modal-success p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-img-accent { display: none; }
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .test-grid { grid-template-columns: 1fr; }
+    .info-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .g1,.g2,.g3,.g4,.g5,.g6 { grid-column: auto; grid-row: auto; aspect-ratio: 4/3; }
+    .map-section { height: auto; }
+    .map-section iframe { height: 300px; }
+    .map-overlay { position: static; transform: none; left: auto; top: auto; width: 100%; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MODAL RESERVA -->
+<div class="modal-overlay" id="reservaModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Reservar taula</h3>
+    <p class="modal-sub">Ompliu el formulari i us confirmarem la reserva per telèfon o email.</p>
+
+    <div id="modalForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom i cognoms</label>
+          <input type="text" id="res-nom" placeholder="Anna García" required>
+        </div>
+        <div class="form-group">
+          <label>Telèfon</label>
+          <input type="tel" id="res-tel" placeholder="600 000 000" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="res-data" required>
+        </div>
+        <div class="form-group">
+          <label>Hora</label>
+          <select id="res-hora">
+            <option value="">-- Seleccioneu --</option>
+            <optgroup label="Migdia">
+              <option>13:00</option><option>13:30</option>
+              <option>14:00</option><option>14:30</option><option>15:00</option>
+            </optgroup>
+            <optgroup label="Nit">
+              <option>20:00</option><option>20:30</option>
+              <option>21:00</option><option>21:30</option><option>22:00</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nº de comensals</label>
+          <select id="res-persones">
+            <option>1 persona</option><option>2 persones</option>
+            <option selected>3–4 persones</option><option>5–6 persones</option>
+            <option>7–8 persones</option><option>Més de 8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Email (opcional)</label>
+          <input type="email" id="res-email" placeholder="correu@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Al·lèrgies o observacions</label>
+        <textarea id="res-notes" placeholder="Al·lèrgies, celebracions, necessitats especials..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="enviarReserva()">Confirmar reserva</button>
+      <p class="modal-alt">O truqueu directament: <a href="tel:+34931749194">+34 931 74 91 94</a></p>
+    </div>
+
+    <div class="modal-success" id="modalSuccess">
+      <div class="check">✅</div>
+      <h4>Sol·licitud enviada!</h4>
+      <p>Us confirmarem la reserva en breu per telèfon o email.<br>Gràcies per confiar en l'Artesana!</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">l'Artesana <span>Restaurant · Rubí</span></a>
+  <ul class="nav-links">
+    <li><a href="#nosaltres">Nosaltres</a></li>
+    <li><a href="#carta">Carta</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#opiniones">Opinions</a></li>
+    <li><a href="#contacte">Contacte</a></li>
+  </ul>
+  <button onclick="openModal()" class="nav-reserve">Reservar</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Cuina saludable · Temporada · Proximitat</div>
+    <h1>l'<em>Artesana</em></h1>
+    <p class="hero-sub">On el menjar es converteix en art · Rubí, Barcelona</p>
+    <div class="hero-ctas">
+      <button onclick="openModal()" class="btn-primary">Reservar taula</button>
+      <a href="#carta" class="btn-outline">Veure la carta</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Descobreix</div>
+</section>
+
+<!-- BADGES -->
+<div class="badges">
+  <div class="badge">
+    <span class="badge-num">4.4</span>
+    <div class="badge-label">★ Google · 375 ressenyes</div>
+  </div>
+  <div class="badge">
+    <span class="badge-num">4.3</span>
+    <div class="badge-label">★ TripAdvisor · 2.700+</div>
+  </div>
+  <div class="badge">
+    <span class="badge-num">€20–30</span>
+    <div class="badge-label">Preu mitjà per persona</div>
+  </div>
+  <div class="badge">
+    <span class="badge-num">2016</span>
+    <div class="badge-label">Any de fundació</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="nosaltres">
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <img class="about-img-main"
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
+        alt="Interior de l'Artesana">
+      <img class="about-img-accent"
+        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&q=80"
+        alt="Ambient del restaurant">
+    </div>
+    <div class="about-text">
+      <div class="section-tag">La nostra història</div>
+      <h2>Cuina amb ànima,<br><em style="font-style:italic;color:var(--terracotta)">art a les parets</em></h2>
+      <p class="about-lead">Un espai on el menjar saludable i l'expressió artística es troben en perfecta harmonia.</p>
+      <p class="about-body">
+        L'Artesana és un restaurant de cuina saludable, de temporada i de proximitat, al cor de Rubí. Des del 2016, el nostre petit i encantador local acull taules que busquen una experiència diferent: platillos d'autor elaborats amb producte fresc del territori, presentats amb cura i servits amb tracte proper.
+      </p>
+      <p class="about-body">
+        Les nostres parets estan obertes a artistes locals que volen exposar les seves obres, creant un diàleg únic entre gastronomia i creativitat. La carta canvia amb les estacions, garantint sorpreses constants i sabors que arriben directament del camp a la taula.
+      </p>
+      <div class="about-attrs">
+        <div class="attr"><div class="attr-icon">🌿</div><div class="attr-label">Cuina saludable</div></div>
+        <div class="attr"><div class="attr-icon">🎨</div><div class="attr-label">Art i cultura</div></div>
+        <div class="attr"><div class="attr-icon">🌱</div><div class="attr-label">Producte local</div></div>
+        <div class="attr"><div class="attr-icon">☀️</div><div class="attr-label">Terrassa</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="carta">
+  <div class="menu-inner">
+    <div class="section-tag">La nostra proposta</div>
+    <h2>Platillos per compartir</h2>
+    <p class="menu-intro">Cada plat, una obra d'art efímera. Producte de temporada, tècnica afinada i sabor honest.</p>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card-emoji">🥩</div>
+        <h3>Steak Tartar</h3>
+        <p>Tall de vedella picada a mà, condimentat amb mestria i servit amb torrades artesanes. El plat estrella de la casa.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🍤</div>
+        <h3>Croquetes de la Casa</h3>
+        <p>Croquetes de ceps i de pernil ibèric, cruixents per fora i cremoses per dins. Cuinades amb amor i tradició.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🌶️</div>
+        <h3>Bravas Estil l'Artesana</h3>
+        <p>La nostra versió singular de les patates braves, amb salsa pròpia que no trobareu en cap altre lloc de Rubí.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🐂</div>
+        <h3>Cua de Vedella</h3>
+        <p>Cua de vedella amb hummus de cigrons o patata i tòfona. Un clàssic reconfortant elevat a la màxima expressió.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🐚</div>
+        <h3>Musclos</h3>
+        <p>Musclos frescos del dia preparats amb salsa de la casa. Senzills, directes i inoblidables.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🐟</div>
+        <h3>Salmó i Peix de Mercat</h3>
+        <p>Salmó sucós i peix de mercat —rape, llobarro— cuinats al moment. La mar al plat, sense artificis.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🍝</div>
+        <h3>Fideuà</h3>
+        <p>Fideuà de cuina casolana, elaborada amb caldo propi i producte de proximitat. Reconfortant i saborosa.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🫕</div>
+        <h3>Galtes de Porc</h3>
+        <p>Galtes de porc confitades amb crema de carabassa i pipes. Una combinació que sorprèn i enamora.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-emoji">🍰</div>
+        <h3>Pastís de Formatge</h3>
+        <p>Pastís de formatge artesanal per tancar l'experiència amb el punt dolç perfecte. Cremós i irresistible.</p>
+      </div>
+    </div>
+    <p class="menu-note">✦ La carta canvia amb les estacions · Sempre producte fresc · Pregunteu pels plats del dia ✦</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galeria">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <div class="section-tag" style="justify-content:center">Galeria</div>
+      <h2>Moments a l'Artesana</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gitem g1">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Plat de restaurant">
+      </div>
+      <div class="gitem g2">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Interior">
+      </div>
+      <div class="gitem g3">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Plats">
+      </div>
+      <div class="gitem g4">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=700&q=80" alt="Tapas">
+      </div>
+      <div class="gitem g5">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Ingredients frescos">
+      </div>
+      <div class="gitem g6">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=80" alt="Ambient">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="opiniones">
+  <div class="test-inner">
+    <div class="test-header">
+      <div class="section-tag" style="justify-content:center">Opinions</div>
+      <h2>El que diuen els nostres clients</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"El millor restaurant de Rubí, sense cap mena de dubte. Menjar original, molt bon producte i un tracte familiar. Seguiu així. 9/10, fregant l'excel·lència."</p>
+        <div class="test-author">— Google Reviews</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Ens hem mudat fa poc a Rubí i hem trobat el nostre lloc. La menjar és saludable, fresca i deliciosa, les porcions generoses i el servei molt amable. Hi tornarem cada setmana."</p>
+        <div class="test-author">— TripAdvisor</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"En l'Artesana et sents com a casa: local acollidor, tracte estupend. Les tapas, les croquetes, el steak tartar... tot excel·lent i a un preu molt raonable. Molt recomanable!"</p>
+        <div class="test-author">— Restaurant Guru</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE CTA -->
+<div class="reserve-cta">
+  <div class="reserve-cta-inner">
+    <h2>Vine a descobrir l'Artesana</h2>
+    <p>Taules petites, sabors grans. Reserva amb antelació, l'espai és limitat.</p>
+    <button onclick="openModal()" class="btn-primary" style="font-size:0.85rem;padding:1.1rem 3rem">📞 Reservar taula</button>
+  </div>
+</div>
+
+<!-- INFO -->
+<section class="info" id="contacte">
+  <div class="info-inner">
+    <div class="info-block">
+      <h3>On som</h3>
+      <div class="info-line">
+        <span class="icon">📍</span>
+        <p><strong>Pl. de Clavé, 11</strong><br>08191 Rubí, Barcelona<br><small style="opacity:0.6">C/ Montserrat, 15 (accés alternatiu)</small></p>
+      </div>
+      <div class="info-line">
+        <span class="icon">🚂</span>
+        <p>FGC-Rubí a 586 m<br><small style="opacity:0.6">Pàrquing a 126 m</small></p>
+      </div>
+      <div class="info-line">
+        <span class="icon">📞</span>
+        <p><a href="tel:+34931749194" style="color:var(--gold);text-decoration:none">+34 931 74 91 94</a></p>
+      </div>
+      <div class="info-line">
+        <span class="icon">🌐</span>
+        <p><a href="http://www.lartesanarestaurant.com" target="_blank" style="color:var(--gold);text-decoration:none">lartesanarestaurant.com</a></p>
+      </div>
+    </div>
+    <div class="info-block">
+      <h3>Horaris</h3>
+      <div class="schedule-row"><span class="schedule-day">Dilluns</span><span class="schedule-hours closed">Tancat</span></div>
+      <div class="schedule-row"><span class="schedule-day">Dimarts – Dijous</span><span class="schedule-hours">13:00 – 16:00 · 20:00 – 23:00</span></div>
+      <div class="schedule-row"><span class="schedule-day">Divendres</span><span class="schedule-hours">13:00 – 16:00 · 20:00 – 23:30</span></div>
+      <div class="schedule-row"><span class="schedule-day">Dissabte</span><span class="schedule-hours">13:00 – 16:30 · 20:00 – 23:30</span></div>
+      <div class="schedule-row"><span class="schedule-day">Diumenge</span><span class="schedule-hours">13:00 – 16:30</span></div>
+      <p style="font-size:0.75rem;color:rgba(245,240,232,0.35);margin-top:1.2rem">* Horaris orientatius. Truqueu per confirmar.</p>
+    </div>
+    <div class="info-block">
+      <h3>Serveis</h3>
+      <div class="info-line"><span class="icon">☀️</span><p>Terrassa exterior</p></div>
+      <div class="info-line"><span class="icon">💳</span><p>Acceptem targetes de crèdit</p></div>
+      <div class="info-line"><span class="icon">🍷</span><p>Carta de vins i destil·lats</p></div>
+      <div class="info-line"><span class="icon">🎨</span><p>Espai d'art i exposicions</p></div>
+      <div class="info-line"><span class="icon">👶</span><p>Trona disponible</p></div>
+      <div class="info-line"><span class="icon">🛍️</span><p>Per emportar disponible</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2989.876204568421!2d2.0285!3d41.4924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDI5JzMyLjYiTiAywrAwMSczMC42IkU!5e0!3m2!1sca!2ses!4v1620000000000!5m2!1sca!2ses"
+    allowfullscreen="" loading="lazy">
+  </iframe>
+  <div class="map-overlay">
+    <h4>l'Artesana</h4>
+    <p>Pl. de Clavé, 11<br>08191 Rubí, Barcelona</p>
+    <p style="margin-top:0.6rem">FGC Rubí · 586 m a peu</p>
+    <a href="https://maps.google.com/?q=L%27artesana+Rubi+Barcelona" target="_blank">Obrir a Google Maps →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">l'Artesana</div>
+  <p style="margin-bottom:0.3rem">Restaurant de cuina saludable, de temporada i de proximitat</p>
+  <div class="footer-social">
+    <a class="social-link" href="https://www.instagram.com/lartesana.restaurant/" target="_blank">IG</a>
+    <a class="social-link" href="https://www.facebook.com/lartesana2016/" target="_blank">FB</a>
+    <a class="social-link" href="http://www.lartesanarestaurant.com" target="_blank">WEB</a>
+  </div>
+  <p>Pl. de Clavé, 11 · 08191 Rubí · <a href="tel:+34931749194">+34 931 74 91 94</a></p>
+  <p style="margin-top:0.8rem;opacity:0.35;font-size:0.68rem">© 2025 l'Artesana Restaurant · Rubí · Tots els drets reservats</p>
+</footer>
+
+<script>
+  function openModal() {
+    document.getElementById('reservaModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('res-data').min = today;
+  }
+  function closeModal() {
+    document.getElementById('reservaModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  // Close clicking outside
+  document.getElementById('reservaModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  // Close with Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function enviarReserva() {
+    const nom = document.getElementById('res-nom').value.trim();
+    const tel = document.getElementById('res-tel').value.trim();
+    const data = document.getElementById('res-data').value;
+    const hora = document.getElementById('res-hora').value;
+
+    if (!nom || !tel || !data || !hora) {
+      alert('Si us plau, ompliu els camps obligatoris: nom, telèfon, data i hora.');
+      return;
+    }
+
+    // Show success state
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+
+    // Auto-close after 4 seconds
+    setTimeout(() => {
+      closeModal();
+      setTimeout(() => {
+        document.getElementById('modalForm').style.display = 'block';
+        document.getElementById('modalSuccess').style.display = 'none';
+        document.getElementById('res-nom').value = '';
+        document.getElementById('res-tel').value = '';
+        document.getElementById('res-data').value = '';
+        document.getElementById('res-hora').value = '';
+        document.getElementById('res-notes').value = '';
+      }, 400);
+    }, 4000);
+  }
+</script>
+</body>
+</html>
